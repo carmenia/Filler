@@ -6,7 +6,7 @@
 /*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 12:10:36 by vduong            #+#    #+#             */
-/*   Updated: 2018/08/20 12:58:01 by vduong           ###   ########.fr       */
+/*   Updated: 2018/08/20 14:36:24 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FILLER_H
 
 #include	"../libft/libft.h"
+#include	"get_next_line.h"
 
 typedef	struct	 s_piece
 {
@@ -31,14 +32,14 @@ typedef	struct	s_map
 
 typedef	struct	s_player
 {
-	char	number;
+	int		number;
 	char	*name;
 	char	symbol;
 }				t_player;
 
-int			fill_map(t_map *map);
-int			fill_piece(t_piece *piece);
-int			fill_player(t_player *player);
+void			fill_map(t_map *map, char *firstline);
+void			fill_piece(t_piece *piece);
+void			fill_player(t_player *player, char *firstline);
 int			free_map(t_map *map);
 int			free_piece(t_piece *piece);
 

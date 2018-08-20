@@ -6,10 +6,13 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 14:56:58 by carmenia          #+#    #+#             */
-/*   Updated: 2018/08/20 15:08:54 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/08/20 15:28:47 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	fill_map(t_map 
+void	fill_map(t_map *map)
+{
+	
+}

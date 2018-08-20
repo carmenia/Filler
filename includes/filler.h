@@ -6,7 +6,7 @@
 /*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 12:10:36 by vduong            #+#    #+#             */
-/*   Updated: 2018/08/20 15:08:56 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/08/20 15:28:29 by carmenia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef	struct	s_player
 	char	symbol;
 }				t_player;
 
-void			fill_map(t_map *map, char *firstline);
+void			fill_map(t_map *map);
 void			fill_piece(t_piece *piece);
 void			fill_player(t_player *player, char *firstline);
 int			free_map(t_map *map);

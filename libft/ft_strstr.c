@@ -3,27 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/19 15:37:40 by carmenia          #+#    #+#             */
-/*   Updated: 2017/11/23 15:42:08 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/17 14:52:53 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/21 12:05:47 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *haystack, const char *needle)
+char	*ft_strstr(const char *big, const char *little)
 {
-	size_t len;
+	int		i;
+	int		j;
+	char	*pt;
 
-	len = ft_strlen(needle);
-	if (*needle == '\0' || !needle)
-		return ((char *)haystack);
-	while (*haystack)
+	i = 0;
+	pt = 0;
+	if (little[i] == '\0')
+		return ((char *)big);
+	while (big[i] != '\0')
 	{
-		if (ft_strncmp(haystack, needle, len) == 0)
-			return ((char *)haystack);
-		haystack++;
+		if (big[i] == little[0])
+		{
+			pt = (char *)big + i;
+			j = 0;
+			while (big[i + j] == little[j])
+			{
+				if (little[j + 1] == '\0')
+					return (pt);
+				j++;
+			}
+			pt = 0;
+		}
+		i++;
 	}
-	return (NULL);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/19 18:51:30 by carmenia          #+#    #+#             */
-/*   Updated: 2017/11/21 18:08:56 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/17 14:33:08 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/17 14:33:09 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ft_isalpha(int c)
 {
-	if (ft_isupper(c) == 1 || ft_islower(c) == 1)
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 		return (1);
-	else
-		return (0);
+	return (0);
 }

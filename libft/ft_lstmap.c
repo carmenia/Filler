@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 20:16:13 by carmenia          #+#    #+#             */
-/*   Updated: 2017/12/04 20:35:06 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/21 10:58:06 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/21 11:37:15 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*new;
 	t_list	*tmp;
-	t_list	*start;
+	t_list	*lstnew;
+	t_list	*res;
 
-	if (lst && f)
+	lstnew = NULL;
+	while (lst)
 	{
 		tmp = f(lst);
-		new = ft_lstnew(tmp->content, tmp->content_size);
-		if (!new)
-			return (NULL);
-		lst = lst->next;
-		start = new;
-		while (lst)
+		if (!lstnew)
 		{
-			tmp = f(lst);
-			new->next = ft_lstnew(tmp->content, tmp->content_size);
-			if (!new->next)
-				return (NULL);
-			new = new->next;
-			lst = lst->next;
+			lstnew = tmp;
+			res = lstnew;
+			lstnew->next = NULL;
 		}
-		return (start);
+		else
+		{
+			lstnew->next = tmp;
+			tmp->next = NULL;
+			lstnew = lstnew->next;
+		}
+		lst = lst->next;
 	}
-	return (NULL);
+	return (res);
 }

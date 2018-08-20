@@ -3,81 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 17:45:49 by carmenia          #+#    #+#             */
-/*   Updated: 2017/12/04 21:31:18 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/17 14:51:44 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/17 14:52:42 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- ** pas encore reussi
-*/
-
 #include "libft.h"
 
-static int			ft_word_count(char const *s, char c)
+static char		**ft_newsplit(size_t size)
 {
-	int	word_count;
-	int	i;
+	char	**split;
 
-	word_count = 0;
-	i = 0;
-	while (s[i] != 0)
-	{
-		while (s[i] == c && s[i] != 0)
-			i++;
-		if (s[i] != c && s[i] != 0)
-			word_count++;
-		while (s[i] != c && s[i] != 0)
-			i++;
-	}
-	return (word_count);
+	if (!(split = (char **)malloc((size + 1) * sizeof(char *))))
+		return (NULL);
+	split[size] = NULL;
+	while (size--)
+		((unsigned char *)split)[size] = 0;
+	return (split);
 }
 
-static const char	*ft_word_fill(char const *s, char c, int word_index,
-		char **word_table)
+static size_t	ft_nbline(char const *s, char c)
 {
-	int	word_length;
-	int	i;
+	size_t nbline;
 
-	word_length = 0;
-	while (s[word_length] != c && s[word_length] != 0)
-		word_length++;
-	if (!(word_table[word_index] =
-				(char *)malloc(sizeof(char) * (word_length + 1))))
-		return (NULL);
-	i = 0;
-	while (i < word_length)
+	nbline = 0;
+	while (*s)
 	{
-		word_table[word_index][i] = s[i];
-		i++;
+		if (*s != c && (*(s - 1) == c || !*(s - 1)))
+			nbline++;
+		s++;
 	}
-	word_table[word_index][i] = 0;
-	return (s + i);
+	return (nbline);
 }
 
-char				**ft_strsplit(char const *s, char c)
+static size_t	ft_sizeofline(char const *s, char c)
 {
-	int		word_count;
-	int		word_index;
-	char	**word_table;
+	size_t size;
 
-	if (!s || !c)
+	size = 0;
+	while (s[size] != c && s[size])
+		size++;
+	return (size);
+}
+
+char			**ft_strsplit(char const *s, char c)
+{
+	char	**split;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	if (!s)
 		return (NULL);
-	word_count = ft_word_count(s, c);
-	if (!(word_table = (char **)malloc(sizeof(char *) * word_count + 1)))
+	if (!(split = ft_newsplit(ft_nbline(s, c))))
 		return (NULL);
-	word_index = 0;
-	while (word_index < word_count)
+	while (*s)
 	{
-		while (*s == c)
-			s++;
-		s = ft_word_fill(s, c, word_index, word_table);
-		if (s == NULL)
-			return (NULL);
-		word_index++;
+		if ((*(s - 1) == c || !*(s - 1)) && *s != c)
+		{
+			if (!(split[++i] = ft_strnew(ft_sizeofline(s, c))))
+				return (NULL);
+			j = 0;
+		}
+		if (*s != c)
+			split[i][j++] = *s;
+		s++;
 	}
-	word_table[word_index] = NULL;
-	return (word_table);
+	return (split);
 }

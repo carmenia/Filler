@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 00:41:11 by carmenia          #+#    #+#             */
-/*   Updated: 2017/12/04 19:08:14 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/17 14:36:41 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/17 14:36:42 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
- **comment ca se fait que la fonction prenne un char *s alors qu'on est censes
- **l'appliquer a dees caracteres
-*/
 
 #include "libft.h"
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	if (s && f)
+	unsigned int	i;
+
+	i = 0;
+	if (f && s)
 	{
-		while (*s)
+		while (s[i])
 		{
-			(*f)(s);
-			s++;
+			f(&s[i]);
+			i++;
 		}
 	}
 }

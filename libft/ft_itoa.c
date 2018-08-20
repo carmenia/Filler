@@ -3,53 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/23 17:47:11 by carmenia          #+#    #+#             */
-/*   Updated: 2017/12/04 21:31:38 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/17 14:33:35 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/17 14:33:36 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_string_size(long long n, int signe)
+static size_t	n_size(long n)
 {
-	int	size;
+	size_t size;
 
-	size = 1 + signe;
-	while (n / 10 > 0)
+	size = 1;
+	if (n < 0)
 	{
-		n = n / 10;
+		size++;
+		n *= -1;
+	}
+	while (n >= 10)
+	{
+		n /= 10;
 		size++;
 	}
 	return (size);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
-	long long	result;
-	char		*str;
-	int			signe;
-	int			size;
-	int			i;
+	long	ntmp;
+	char	*itoa;
+	size_t	size;
 
-	signe = 0;
-	i = 0;
-	result = (long long)n;
-	if (result < 0)
-		signe = 1;
-	if (result < 0)
-		result = -result;
-	size = ft_string_size(result, signe);
-	if (!(str = ft_strnew(size)))
+	ntmp = (long)n;
+	size = n_size(ntmp);
+	itoa = ft_strnew(size);
+	if (!itoa)
 		return (NULL);
-	if (signe == 1)
-		str[0] = '-';
-	while (i < size - signe)
+	if (ntmp < 0)
 	{
-		str[size - 1 - i] = result % 10 + 48;
-		result = result / 10;
-		i++;
+		*itoa = '-';
+		ntmp *= (-1);
 	}
-	return (str);
+	while ((size && n >= 0) || (size > 1 && n < 0))
+	{
+		itoa[--size] = ntmp % 10 + 48;
+		ntmp /= 10;
+	}
+	return (itoa);
 }

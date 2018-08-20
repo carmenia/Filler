@@ -6,11 +6,11 @@
 /*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 15:57:17 by carmenia          #+#    #+#             */
-/*   Updated: 2018/08/01 18:10:43 by carmenia         ###   ########.fr       */
+/*   Updated: 2018/08/20 12:59:03 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../includes/get_next_line.h"
 
 static t_file	*new_link(int fd)
 {

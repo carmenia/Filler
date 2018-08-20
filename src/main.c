@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_highlow_sqrt.c                                  :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 21:02:24 by carmenia          #+#    #+#             */
-/*   Updated: 2018/01/15 12:36:01 by carmenia         ###   ########.fr       */
+/*   Created: 2018/08/20 12:22:25 by vduong            #+#    #+#             */
+/*   Updated: 2018/08/20 12:59:32 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include	"../includes/filler.h"
 
-int		ft_highlow_sqrt(int n, char *highlow)
+int	main(int argc, char **argv)
 {
-	int	i;
+	t_player			player;
+	t_map				map;
+	t_piece				piece;
 
-	i = 0;
-	while (i * i < n)
-		i++;
-	if (i * i == n)
-		return (i);
-	else if (ft_strcmp(highlow, "high") == 0)
-		return (i);
-	else if (ft_strcmp(highlow, "low") == 0)
-		return (i - 1);
+	if (!fill_player(&player) && (fill_map(&map) && fill_piece(&piece)))
+	{
+	}
+
 	return (0);
 }

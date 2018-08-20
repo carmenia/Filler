@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_factorial.c                                     :+:      :+:    :+:   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 10:40:17 by carmenia          #+#    #+#             */
-/*   Updated: 2017/11/21 16:05:29 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/06 15:44:54 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/22 11:24:40 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_factorial(size_t n)
+int	ft_factorial(int nb)
 {
-	int	i;
-
-	i = 1;
-	if (n >= 13)
+	if (nb < 0 || nb > 12)
 		return (0);
-	if (n == 0 || n == 1)
+	else if (nb == 0)
 		return (1);
-	while (n > 1)
-	{
-		i = n * i;
-		n--;
-	}
-	return (i);
+	else
+		return (nb * ft_factorial(nb - 1));
 }

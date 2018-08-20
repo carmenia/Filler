@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 19:23:41 by carmenia          #+#    #+#             */
-/*   Updated: 2017/12/04 22:33:01 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/21 10:59:47 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/21 11:44:45 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_list	*list;
+	t_list	*new;
 
-	list = (t_list*)malloc(sizeof(t_list));
-	if (list == NULL)
+	new = (t_list *)malloc(sizeof(*new));
+	if (new == NULL)
 		return (NULL);
-	if (content == NULL)
-	{
-		list->content = NULL;
-		list->content_size = 0;
-	}
 	else
 	{
-		list->content = malloc(content_size);
-		if (list->content == NULL)
-			return (NULL);
-		ft_memcpy(list->content, content, content_size);
-		list->content_size = content_size;
+		if (content != NULL)
+		{
+			new->content = (void *)ft_memalloc(sizeof(void) * content_size + 1);
+			if (new->content == NULL)
+				return (NULL);
+			ft_memcpy(new->content, content, content_size);
+			new->content_size = content_size;
+		}
+		else
+		{
+			new->content = NULL;
+			new->content_size = 0;
+		}
+		new->next = NULL;
 	}
-	list->next = NULL;
-	return (list);
+	return (new);
 }

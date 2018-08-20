@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap_str.c                                      :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 10:37:59 by carmenia          #+#    #+#             */
-/*   Updated: 2017/11/21 15:09:48 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/22 11:40:19 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/22 11:49:51 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap_str(char **a, char **b)
+int	ft_min(int *tab, int size)
 {
-	char *c;
+	int min;
 
-	c = *a;
-	*a = *b;
-	*b = c;
+	min = tab[--size];
+	while (size--)
+	{
+		if (tab[size] < min)
+			min = tab[size];
+	}
+	return (min);
 }

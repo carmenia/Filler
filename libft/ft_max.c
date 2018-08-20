@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstrev.c                                        :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmenia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vduong <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/10 18:39:14 by carmenia          #+#    #+#             */
-/*   Updated: 2018/01/12 13:00:32 by carmenia         ###   ########.fr       */
+/*   Created: 2017/11/22 11:47:01 by vduong            #+#    #+#             */
+/*   Updated: 2017/11/22 11:49:40 by vduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-#include "libft.h"
-
-void	ft_lstrev(t_list **alst)
+int	ft_max(int *tab, int size)
 {
-	t_list	*prev;
-	t_list	*cur;
-	t_list	*next;
+	int max;
 
-	prev = NULL;
-	cur = *alst;
-	while (cur != NULL)
+	max = tab[--size];
+	while (size--)
 	{
-		next = cur->next;
-		cur->next = prev;
-		prev = cur;
-		cur = next;
+		if (tab[size] > max)
+			max = tab[size];
 	}
-	*alst = prev;
+	return (max);
 }
